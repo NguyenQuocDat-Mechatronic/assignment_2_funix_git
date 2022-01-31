@@ -31,10 +31,17 @@ def tinhdiem_trungbinh(x):
                     i +=1
         total_dict[list_point[0]] = sub_dict
     print(total_dict)
-
+    return total_dict
+def luudiem_trungbinh(y,z):
+    with open(y,mode='w') as f:
+        f.write(z)
 def main():
-    link = input()
-    tinhdiem_trungbinh(link)
+    link_in_file = input()
+    tinhdiem_trungbinh(link_in_file)
+    link_out_file = input()
+    luudiem_trungbinh(link_out_file,tinhdiem_trungbinh(link_in_file))
+
 main()
 # tinhdiem_trungbinh(".\.\diem_chitiet.txt")
 # tinhdiem_trungbinh("D:\1.Education\1.IT\1_git\1_assignment1\2_assignment_2_funix\diem_chitiet.txt")
+# luudiem_trungbinh("D:\1.Education\1.IT\1_git\1_assignment1\2_assignment_2_funix\diem_trungbinh.txt")
