@@ -13,11 +13,13 @@ def tinhdiem_trungbinh(x):
     for sub_line in handle:
         if not sub_line.startswith("Ma HS"):
             list_point = list()
+            # tách từng dòng vào list_point
             for point in sub_line.split(";"):
                 list_point.append(point.strip())
             sub_dict =dict()
             i = 0
             for point_cal in list_point:
+                # biến các điểm thành phần của 1 môn thành 1 list point để tiện tính toán
                 point = list(map(int,point_cal.split(",")))
                 if len(point) ==4:
                     avg = round(point[0]*5/100+point[1]*10/100+point[2]*15/100+point[3]*70/100,2)
