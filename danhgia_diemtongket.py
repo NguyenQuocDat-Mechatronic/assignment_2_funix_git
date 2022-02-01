@@ -25,7 +25,6 @@ def xeploai_hocsinh(x):
                 hang = "TB"
             dict_hang[list_point[0]]= hang
     return dict_hang
-# print(xeploai_hocsinh('D:\\1.Education\\1.IT\\1_git\\1_assignment1\\2_assignment_2_funix\\diem_trungbinh.txt'))
 def xeploai_thidaihoc_hocsinh(link):
     handle = open(link)
     dict_xeploai = dict()
@@ -63,21 +62,23 @@ def xeploai_thidaihoc_hocsinh(link):
             list_xeploai.append(sosanh(avg_D,32,24,20))
             dict_xeploai[list_point[0]]=list_xeploai
     return dict_xeploai
-
 def main():
-    link_in_file = input("diem_ trungbinh.tx:")
+    link_in_file = input("đường dẫn input cho file “diem_ trungbinh.txt:")
     dict_xeploai_TBchuan = xeploai_hocsinh(link_in_file)
     dict_xeploai = xeploai_thidaihoc_hocsinh(link_in_file)
-    link_out_file = input()
+    link_out_file = input("đường dẫn output cho file “danhgia_hocsinh.txt:")
     f = open(link_out_file, mode="w")
     f.write( 'Ma HS,xeploai_TB chuan,xeploai_A,xeploai_A1,xeploai_B,xeploai_C,xeploai_D'+"\n")
     list_result = list()
+    # ghep string hoc sinh + xeploai_tbchuan.
     for x,y in dict_xeploai_TBchuan.items():
         result = str(x)+";"+str(y)
         list_result.append(result)
     i = 0
+    # duyệt từng học sinh
     for z in dict_xeploai.values():
         result_point = str()
+        # duyệt từng loại xếp hạng rồi add string
         for u in z:
             result_point = result_point + ";" + str(u)
         final_result = list_result[i] +result_point +"\n"

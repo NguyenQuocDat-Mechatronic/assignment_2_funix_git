@@ -1,11 +1,9 @@
 """Assignment 2"""
 def tinhdiem_trungbinh(x):
     handle = open(x)
-    string_subject = str()
     dict_subject = list()
     for line in handle:
         if line.startswith("Ma HS"):
-            string_subject = line
             for i in line.split(","):
                 dict_subject.append(i.strip())
         break
@@ -30,21 +28,27 @@ def tinhdiem_trungbinh(x):
                     sub_dict[dict_subject[1+i]] = avg
                     i +=1
         total_dict[list_point[0]] = sub_dict
-    return string_subject,total_dict
+    return total_dict
 def luudiem_trungbinh(y,z):
     f = open(y,mode="w")
-    f.write(z[0])
-    total_dict = z[1]
-    for mahs, point in total_dict.items():
+    for hocsinh in z.values():
+        str_1 = "Ma HS"
+        for subject in hocsinh:
+            str_1 = str_1 +","+subject
+        str_1 += '\n'
+        # chỉ dùng 1 dict đầu tiên rồi break luôn làm tăng tốc độ xử lý
+        break
+    f.write(str_1)
+    for mahs, point in z.items():
         string_point = str()
         for sub_point in point.values():
             string_point =  str(sub_point)+","+string_point
         str_final = str(mahs) +";"+ string_point[:-1]+"\n"
         f.write(str_final)
 def main():
-    link_in_file = input()
-    tinhdiem_trungbinh(link_in_file)
-    link_out_file = input()
+    link_in_file = input("đường dẫn cho input file – “diem_chitiet.txt:")
+    print(tinhdiem_trungbinh(link_in_file))
+    link_out_file = input("đường dẫn cho output file – “diem_trungbinh.txt:")
     luudiem_trungbinh(link_out_file,tinhdiem_trungbinh(link_in_file))
 
 main()
