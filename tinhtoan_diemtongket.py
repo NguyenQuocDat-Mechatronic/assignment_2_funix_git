@@ -48,8 +48,8 @@ def main():
     luudiem_trungbinh(link_out_file,tinhdiem_trungbinh(link_in_file))
 
 main()
-"""Test thử điểm trung bình"""
-# tinhdiem_trungbinh(".\.\diem_chitiet.txt")
-# tinhdiem_trungbinh("D:\1.Education\1.IT\1_git\1_assignment1\2_assignment_2_funix\diem_chitiet.txt")
-# luudiem_trungbinh("D:\1.Education\1.IT\1_git\1_assignment1\2_assignment_2_funix\diem_trungbinh.txt")
+"""Test thử link điểm trung bình"""
+
+# D:\1.Education\1.IT\1_git\1_assignment1\2_assignment_2_funix\diem_chitiet.txt
+# D:\1.Education\1.IT\1_git\1_assignment1\2_assignment_2_funix\diem_trungbinh.txt
 

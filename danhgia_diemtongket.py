@@ -25,14 +25,15 @@ def xeploai_hocsinh(x):
                 hang = "TB"
             dict_hang[list_point[0]]= hang
     return dict_hang
-print(xeploai_hocsinh('D:\\1.Education\\1.IT\\1_git\\1_assignment1\\2_assignment_2_funix\\diem_trungbinh.txt'))
+# print(xeploai_hocsinh('D:\\1.Education\\1.IT\\1_git\\1_assignment1\\2_assignment_2_funix\\diem_trungbinh.txt'))
 def xeploai_thidaihoc_hocsinh(link):
     handle = open(link)
     dict_xeploai = dict()
+    # duyệt từng dòng của file
     for sub_line in handle:
         if not sub_line.startswith("Ma HS"):
             list_point = list()
-            # tách từng dòng vào list_point
+            # tách ma_hs và point từng dòng vào list_point
             for point in sub_line.split(";"):
                 list_point.append(point.strip())
             sub_lpoint = list()
@@ -43,19 +44,46 @@ def xeploai_thidaihoc_hocsinh(link):
             avg_A1= f_lp[0]+f_lp[1]+f_lp[5]
             avg_B = f_lp[0]+f_lp[2]+f_lp[3]
             avg_C = f_lp[4]+f_lp[6]+f_lp[7]
-            avg_D = f_lp[0]+f_lp[4]+f_lp[5]
+            avg_D = f_lp[0]+f_lp[4]+f_lp[5]*2
             list_xeploai = list()
             list_diem_xep = [avg_A,avg_A1,avg_B]
-            print(list_diem_xep)
-            for i in list_diem_xep:
-                if i >= 24:
+            def sosanh(k,x,y,z):
+                if k >= x:
                     xl = 1
-                elif i<24 and i >=18:
+                elif k<x and k >=y:
                     xl = 2
-                elif i < 18 and i >= 12:
+                elif k < y and k >= z:
                     xl =3
                 else:
                     xl = 4
-                list_xeploai.append(xl)
-            return list_xeploai
-print(xeploai_thidaihoc_hocsinh('D:\\1.Education\\1.IT\\1_git\\1_assignment1\\2_assignment_2_funix\\diem_trungbinh.txt'))
+                return xl
+            for i in list_diem_xep:
+                list_xeploai.append(sosanh(i,24,18,12))
+            list_xeploai.append(sosanh(avg_C,21,15,12))
+            list_xeploai.append(sosanh(avg_D,32,24,20))
+            dict_xeploai[list_point[0]]=list_xeploai
+    return dict_xeploai
+
+def main():
+    link_in_file = input("diem_ trungbinh.tx:")
+    dict_xeploai_TBchuan = xeploai_hocsinh(link_in_file)
+    dict_xeploai = xeploai_thidaihoc_hocsinh(link_in_file)
+    link_out_file = input()
+    f = open(link_out_file, mode="w")
+    f.write( 'Ma HS,xeploai_TB chuan,xeploai_A,xeploai_A1,xeploai_B,xeploai_C,xeploai_D'+"\n")
+    list_result = list()
+    for x,y in dict_xeploai_TBchuan.items():
+        result = str(x)+";"+str(y)
+        list_result.append(result)
+    i = 0
+    for z in dict_xeploai.values():
+        result_point = str()
+        for u in z:
+            result_point = result_point + ";" + str(u)
+        final_result = list_result[i] +result_point +"\n"
+        i +=1
+        f.write(final_result)
+main()
+"""Test thử đường link"""
+# D:\1.Education\1.IT\1_git\1_assignment1\2_assignment_2_funix\diem_trungbinh.txt
+# D:\1.Education\1.IT\1_git\1_assignment1\2_assignment_2_funix\danhgia_hocsinh.txt
